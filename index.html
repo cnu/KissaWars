@@ -8,6 +8,22 @@
   <meta name="theme-color" content="#0a0a0a">
   <title>KissaWars</title>
   <link rel="stylesheet" href="css/style.css">
+  <script defer src="https://umalytics.cruns.com/script.js" data-website-id="07260d19-8ca7-4a44-82df-f64911f3eebb"></script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//mattam.cruns.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '6']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -22,12 +38,13 @@
       <button id="btn-leaderboard" class="btn">Leaderboard</button>
     </div>
     <button id="btn-sound-toggle" class="btn btn-sound">Sound: ON</button>
+    <div style="color:#888;font-size:0.7em;margin-top:1.5em;">This is just a game. Drug usage is bad for health.</div>
   </section>
 
   <!-- Market Screen -->
   <section id="screen-market" class="screen market-screen">
     <div class="market-header">
-      <pre class="logo-sm">KissaWars</pre>
+      <pre class="logo-sm" onclick="KW.saveGame(); KW.refreshContinueButton(); KW.showScreen('title');" style="cursor:pointer;">KissaWars</pre>
     </div>
     <div id="status-bar"></div>
     <div id="market-list"></div>
