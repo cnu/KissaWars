@@ -199,8 +199,6 @@ KW.openQuantityModal = function(title, unitPrice, maxQty, callback) {
   };
 
   modal.classList.add('active');
-  input.focus();
-  input.select();
 };
 
 // Amount modal (for bank/shark)
@@ -257,8 +255,6 @@ KW.openAmountModal = function(title, maxAmount, callback) {
   };
 
   modal.classList.add('active');
-  input.focus();
-  input.select();
 };
 
 // Toast notification
