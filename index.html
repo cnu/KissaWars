@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>KissaWars</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Title Screen -->
+  <section id="screen-title" class="screen title-screen active">
+    <div class="title-logo">KISSA WARS</div>
+    <div class="title-sub">Make your fortune in 30 days</div>
+    <div class="title-buttons">
+      <button id="btn-new-game" class="btn">New Game</button>
+      <button id="btn-continue" class="btn" style="display:none">Continue</button>
+      <button id="btn-leaderboard" class="btn">Leaderboard</button>
+    </div>
+    <button id="btn-sound-toggle" class="btn btn-sound">Sound: ON</button>
+  </section>
+
+  <!-- Market Screen -->
+  <section id="screen-market" class="screen market-screen">
+    <div id="status-bar"></div>
+    <div id="market-list"></div>
+    <div id="market-nav"></div>
+  </section>
+
+  <!-- Travel Screen -->
+  <section id="screen-travel" class="screen travel-screen">
+    <h2>Where to?</h2>
+    <div id="travel-list"></div>
+    <button class="btn btn-back" onclick="KW.showScreen('market'); KW.renderMarket();" style="margin-top:12px">Back</button>
+  </section>
+
+  <!-- Event Screen -->
+  <section id="screen-event" class="screen event-screen">
+    <div id="event-message"></div>
+    <div id="event-choices"></div>
+  </section>
+
+  <!-- Combat Screen -->
+  <section id="screen-combat" class="screen combat-screen">
+    <h2 style="text-align:center;color:var(--red)">POLICE!</h2>
+    <div id="combat-content"></div>
+  </section>
+
+  <!-- Bank Screen -->
+  <section id="screen-bank" class="screen bank-screen">
+    <div id="status-bar-bank"></div>
+    <h2 style="text-align:center;color:var(--green-dim)">BANK</h2>
+    <div id="bank-content"></div>
+  </section>
+
+  <!-- Loan Shark Screen -->
+  <section id="screen-shark" class="screen shark-screen">
+    <h2 style="text-align:center;color:var(--red)">LOAN SHARK</h2>
+    <div id="shark-content"></div>
+  </section>
+
+  <!-- Stash Screen -->
+  <section id="screen-stash" class="screen stash-screen">
+    <h2 style="text-align:center;color:var(--green-dim)">STASH</h2>
+    <div id="stash-content"></div>
+  </section>
+
+  <!-- Game Over Screen -->
+  <section id="screen-gameover" class="screen gameover-screen">
+    <div id="gameover-content"></div>
+  </section>
+
+  <!-- Leaderboard Screen -->
+  <section id="screen-leaderboard" class="screen leaderboard-screen">
+    <h2>High Scores</h2>
+    <div id="leaderboard-list"></div>
+    <button id="btn-lb-back" class="btn btn-back" style="margin-top:12px">Back</button>
+  </section>
+
+  <!-- Quantity Modal -->
+  <div id="quantity-modal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 id="modal-title">Buy</h3>
+      <div id="modal-unit-price" class="modal-info"></div>
+      <div class="modal-input-group">
+        <input type="number" id="modal-qty-input" min="0" value="1" inputmode="numeric">
+        <button id="modal-max-btn" class="btn-sm">MAX</button>
+      </div>
+      <input type="range" id="modal-qty-slider" class="modal-slider" min="0" value="1">
+      <div id="modal-total" class="modal-total"></div>
+      <div class="modal-buttons">
+        <button id="modal-cancel-btn" class="btn btn-back">Cancel</button>
+        <button id="modal-confirm-btn" class="btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Scripts (dependency order) -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/leaderboard.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/combat.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
