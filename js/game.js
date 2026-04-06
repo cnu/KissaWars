@@ -19,17 +19,17 @@ KW.init = function() {
   };
 
   var continueBtn = document.getElementById('btn-continue');
-  if (KW.hasSave()) {
-    continueBtn.style.display = '';
-    continueBtn.onclick = function() {
-      KW.sound.click();
-      KW.loadGame();
-      KW.showScreen('market');
-      KW.renderMarket();
-    };
-  } else {
-    continueBtn.style.display = 'none';
-  }
+  continueBtn.onclick = function() {
+    KW.sound.click();
+    if (!KW.loadGame()) {
+      KW.refreshContinueButton();
+      KW.showToast('No save found!');
+      return;
+    }
+    KW.showScreen('market');
+    KW.renderMarket();
+  };
+  KW.refreshContinueButton();
 
   document.getElementById('btn-leaderboard').onclick = function() {
     KW.sound.click();
@@ -39,6 +39,7 @@ KW.init = function() {
 
   document.getElementById('btn-lb-back').onclick = function() {
     KW.sound.click();
+    KW.refreshContinueButton();
     KW.showScreen('title');
   };
 
@@ -56,6 +57,12 @@ KW.init = function() {
   }
 
   KW.showScreen('title');
+};
+
+KW.refreshContinueButton = function() {
+  var continueBtn = document.getElementById('btn-continue');
+  if (!continueBtn) return;
+  continueBtn.style.display = KW.hasSave() ? '' : 'none';
 };
 
 // Buy drug
@@ -312,6 +319,7 @@ KW.submitScore = function() {
   if (!name) name = 'Anonymous';
   KW.saveToLeaderboard(name, KW.getNetWorth(), KW.state.stats);
   KW.deleteSave();
+  KW.refreshContinueButton();
   KW.showToast('Score saved!');
   KW.sound.buy();
   setTimeout(function() {
@@ -322,9 +330,8 @@ KW.submitScore = function() {
 
 KW.backToTitle = function() {
   KW.deleteSave();
+  KW.refreshContinueButton();
   KW.showScreen('title');
-  // Reset continue button
-  document.getElementById('btn-continue').style.display = 'none';
 };
 
 // Start

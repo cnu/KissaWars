@@ -169,6 +169,12 @@ KW.openQuantityModal = function(title, unitPrice, maxQty, callback) {
     slider.value = v;
     updateTotal();
   };
+  input.onkeydown = function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('modal-confirm-btn').click();
+    }
+  };
   slider.oninput = function() {
     input.value = slider.value;
     updateTotal();
@@ -220,6 +226,12 @@ KW.openAmountModal = function(title, maxAmount, callback) {
     v = Math.max(0, Math.min(v, maxAmount));
     slider.value = v;
     total.textContent = KW.formatMoney(v);
+  };
+  input.onkeydown = function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('modal-confirm-btn').click();
+    }
   };
   slider.oninput = function() {
     input.value = slider.value;
@@ -441,8 +453,18 @@ KW.renderGameOver = function() {
     '</div>' +
     '<div class="gameover-save">' +
       '<input type="text" id="score-name" placeholder="Enter your name" maxlength="20" class="name-input" />' +
-      '<button class="btn" onclick="KW.submitScore()">Save Score</button>' +
+    '<button class="btn" onclick="KW.submitScore()">Save Score</button>' +
     '</div>' +
     '<button class="btn" onclick="KW.backToTitle()">Main Menu</button>';
   el.innerHTML = html;
+
+  var nameInput = document.getElementById('score-name');
+  if (nameInput) {
+    nameInput.onkeydown = function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        KW.submitScore();
+      }
+    };
+  }
 };

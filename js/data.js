@@ -3,17 +3,18 @@ window.KW = window.KW || {};
 
 KW.DRUGS = [
   { name: 'Paper',         realName: 'LSD Tabs', min: 1000, max: 4400 },
-  { name: 'Podi',          realName: 'Cocaine', min: 15000, max: 29000 },
-  { name: 'Charas',        realName: 'Hashish', min: 480,  max: 1280 },
-  { name: 'Brown Sugar',   realName: 'Heroin', min: 5500, max: 13000 },
-  { name: 'Maathirai',     realName: 'Pills', min: 11,   max: 60 },
+  { name: 'Podi',          realName: 'Cocaine', min: 15000, max: 89000 },
+  { name: 'Karuppu',       realName: 'Hashish', min: 480,  max: 1280 },
+  { name: 'Brown Sugar',   realName: 'Heroin', min: 5500, max: 43000 },
+  { name: 'Ice',           realName: 'Methamphetamine', min: 2300, max: 14500},
+  { name: 'Thalagani',     realName: 'Nicotine Pouch', min: 70,   max: 360 },
   { name: 'Thool',         realName: 'MDA', min: 1500, max: 4400 },
-  { name: 'Kasakasa',      realName: 'Opium', min: 540,  max: 1250 },
-  { name: 'Kallu',         realName: 'Moonshine', min: 1000, max: 3500 },
-  { name: 'Kaattaan',      realName: 'Peyote', min: 220,  max: 700 },
-  { name: 'Kaalan',        realName: 'Shrooms', min: 630,  max: 1300 },
-  { name: 'Vega',          realName: 'Speed', min: 90,   max: 250 },
-  { name: 'Ganja',         realName: 'Weed', min: 315,  max: 890 },
+  { name: 'Abin',          realName: 'Opium', min: 540,  max: 1250 },
+  { name: 'Hans',          realName: 'Chewable Tobacco', min: 30,  max: 230 },
+  { name: 'Kallu',         realName: 'Moonshine', min: 300, max: 2500 },
+  { name: 'Kaalan',        realName: 'Shrooms', min: 830,  max: 3900 },
+  { name: 'Syrup',         realName: 'Codeine', min: 250,   max: 1250 },
+  { name: 'Ganja',         realName: 'Weed', min: 315,  max: 1900 },
 ];
 
 KW.LOCATIONS = [
@@ -43,7 +44,7 @@ KW.EVENTS = {
     'A gang of rowdies attacked you!',
   ],
   coatMessages: [
-    'Would you like to buy a bigger lungi-bag for ${price}? (+{extra} pockets)',
+    'Would you like to buy a bigger Katta-pai for {price}? (+{extra} pockets)',
   ],
   policeMessages: [
     'Inspector Ravi and {count} constables are chasing you!',

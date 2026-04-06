@@ -162,6 +162,9 @@ describe('Event Creation', () => {
 
 describe('KW.rollEvent', () => {
   beforeEach(() => {
+    // Re-load events.js to restore original rollEvent (other tests may stub it)
+    delete require.cache[require.resolve('../js/events.js')];
+    require('../js/events.js');
     KW.newGame();
     KW.state.currentPrices = {};
     KW.DRUGS.forEach(function(d) {
@@ -184,9 +187,10 @@ describe('KW.rollEvent', () => {
 
   test('generates a mix of event types over many rolls', () => {
     var types = {};
-    for (var i = 0; i < 500; i++) {
-      KW.newGame();
+    for (var i = 0; i < 1000; i++) {
+      // Reset state each iteration to avoid side effects from muggings etc.
       KW.state.player.cash = 10000;
+      KW.state.player.coatSize = KW.STARTING_COAT;
       KW.state.inventory = { Paper: 10 };
       KW.state.currentPrices = { Paper: 2000, Ganja: 500 };
       var evt = KW.rollEvent();

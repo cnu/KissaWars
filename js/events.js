@@ -95,7 +95,9 @@ KW.createCoatEvent = function() {
   var price = KW.randInt(150, 500);
   return {
     type: 'coat',
-    message: 'Would you like to buy a bigger trenchcoat for ' + KW.formatMoney(price) + '? (+' + extra + ' pockets)',
+    message: KW.EVENTS.coatMessages[KW.randInt(0, KW.EVENTS.coatMessages.length - 1)]
+      .replace('{price}', KW.formatMoney(price))
+      .replace('{extra}', extra),
     extra: extra,
     price: price,
     needsChoice: true,
