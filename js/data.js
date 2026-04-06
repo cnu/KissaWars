@@ -2,18 +2,18 @@
 window.KW = window.KW || {};
 
 KW.DRUGS = [
-  { name: 'Paper',         min: 1000, max: 4400 },   // LSD tabs
-  { name: 'Podi',          min: 15000, max: 29000 },  // Cocaine (powder)
-  { name: 'Charas',        min: 480,  max: 1280 },    // Hashish
-  { name: 'Brown Sugar',   min: 5500, max: 13000 },   // Heroin
-  { name: 'Maathirai',     min: 11,   max: 60 },      // Pills/Ludes
-  { name: 'Thool',         min: 1500, max: 4400 },    // Dust/MDA
-  { name: 'Kasakasa',      min: 540,  max: 1250 },    // Opium/poppy
-  { name: 'Kallu',         min: 1000, max: 3500 },    // Toddy/moonshine
-  { name: 'Kaattaan',      min: 220,  max: 700 },     // Peyote (wild stuff)
-  { name: 'Kaalan',        min: 630,  max: 1300 },    // Shrooms (mushroom)
-  { name: 'Vega',          min: 90,   max: 250 },     // Speed
-  { name: 'Ganja',         min: 315,  max: 890 },     // Weed
+  { name: 'Paper',         realName: 'LSD Tabs', min: 1000, max: 4400 },
+  { name: 'Podi',          realName: 'Cocaine', min: 15000, max: 29000 },
+  { name: 'Charas',        realName: 'Hashish', min: 480,  max: 1280 },
+  { name: 'Brown Sugar',   realName: 'Heroin', min: 5500, max: 13000 },
+  { name: 'Maathirai',     realName: 'Pills', min: 11,   max: 60 },
+  { name: 'Thool',         realName: 'MDA', min: 1500, max: 4400 },
+  { name: 'Kasakasa',      realName: 'Opium', min: 540,  max: 1250 },
+  { name: 'Kallu',         realName: 'Moonshine', min: 1000, max: 3500 },
+  { name: 'Kaattaan',      realName: 'Peyote', min: 220,  max: 700 },
+  { name: 'Kaalan',        realName: 'Shrooms', min: 630,  max: 1300 },
+  { name: 'Vega',          realName: 'Speed', min: 90,   max: 250 },
+  { name: 'Ganja',         realName: 'Weed', min: 315,  max: 890 },
 ];
 
 KW.LOCATIONS = [

@@ -40,6 +40,24 @@ KW.renderStatusBar = function() {
     '</div>';
 };
 
+KW.renderDrugName = function(name) {
+  var realName = KW.getDrugRealName(name);
+  if (!realName || realName === name) {
+    return '<span class="drug-name-main">' + name + '</span>';
+  }
+  return '<span class="drug-name-main">' + name + '</span>' +
+    '<span class="drug-name-sub">' + realName + '</span>';
+};
+
+KW.renderPriceBar = function(name, price) {
+  var drug = KW.getDrugData(name);
+  if (!drug) return '<div class="price-bar"><div class="price-tick" style="left:50%"></div></div>';
+  var range = drug.max - drug.min;
+  var pct = range > 0 ? ((price - drug.min) / range) * 100 : 50;
+  pct = Math.max(0, Math.min(100, pct));
+  return '<div class="price-bar"><div class="price-tick" style="left:' + pct + '%"></div></div>';
+};
+
 KW.renderMarket = function() {
   KW.renderStatusBar();
   var prices = KW.state.currentPrices;
@@ -64,8 +82,8 @@ KW.renderMarket = function() {
     var price = prices[name];
     var qty = inv[name] || 0;
     html += '<tr data-drug="' + name + '">' +
-      '<td>' + name + '</td>' +
-      '<td class="price">' + KW.formatMoney(price) + '</td>' +
+      '<td class="drug-name-cell">' + KW.renderDrugName(name) + '</td>' +
+      '<td class="price"><span class="price-value">' + KW.formatMoney(price) + '</span>' + KW.renderPriceBar(name, price) + '</td>' +
       '<td class="qty">' + qty + '</td>' +
       '<td class="actions">' +
         '<button class="btn-sm btn-buy" onclick="KW.openBuyModal(\'' + name + '\')">BUY</button>' +
@@ -377,7 +395,8 @@ KW.renderStash = function() {
   for (var drug in inv) {
     if (inv[drug] > 0) {
       hasInv = true;
-      html += '<div class="stash-row"><span>' + drug + ': ' + inv[drug] + '</span>' +
+      html += '<div class="stash-row"><span class="stash-drug">' + KW.renderDrugName(drug) + '</span>' +
+        '<span class="stash-qty">' + inv[drug] + '</span>' +
         '<button class="btn-sm" onclick="KW.storeInStash(\'' + drug + '\')">Store</button></div>';
     }
   }
@@ -389,7 +408,8 @@ KW.renderStash = function() {
   for (var s in stash) {
     if (stash[s] > 0) {
       hasStash = true;
-      html += '<div class="stash-row"><span>' + s + ': ' + stash[s] + '</span>' +
+      html += '<div class="stash-row"><span class="stash-drug">' + KW.renderDrugName(s) + '</span>' +
+        '<span class="stash-qty">' + stash[s] + '</span>' +
         '<button class="btn-sm" onclick="KW.retrieveFromStash(\'' + s + '\')">Take</button></div>';
     }
   }

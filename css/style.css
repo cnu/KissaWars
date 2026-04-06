@@ -79,15 +79,22 @@ body::after {
   font-size: 2.2rem;
   font-weight: bold;
   color: var(--green);
+  letter-spacing: 6px;
   text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
-  letter-spacing: 4px;
   animation: glow 2s ease-in-out infinite alternate;
+}
+
+.title-tagline {
+  color: var(--orange);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin-top: 4px;
 }
 
 .title-sub {
   color: var(--green-dim);
   font-size: 0.85rem;
-  margin-top: -12px;
+  margin-top: 2px;
 }
 
 @keyframes glow {
@@ -191,6 +198,23 @@ body::after {
 .status-loc { color: var(--green); font-weight: bold; }
 .status-health { color: var(--orange); }
 
+/* Small logo for gameplay screens */
+.market-header {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 4px 0;
+}
+
+.logo-sm {
+  display: inline-block;
+  margin: 0;
+  color: var(--green);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+  opacity: 0.6;
+}
+
 /* Market */
 .market-screen {
   gap: 0;
@@ -222,7 +246,32 @@ body::after {
   border-bottom: 1px solid rgba(0, 85, 0, 0.3);
 }
 
-.market-table .price { color: var(--gold); }
+.drug-name-cell {
+  min-width: 120px;
+}
+
+.drug-name-main {
+  display: block;
+  color: var(--green);
+}
+
+.drug-name-sub {
+  display: block;
+  margin-top: 2px;
+  color: var(--green-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.4px;
+}
+
+.market-table .price {
+  width: 120px;
+}
+
+.price-value {
+  display: block;
+  color: var(--gold);
+}
+
 .market-table .qty { color: var(--white); text-align: center; }
 .market-table .actions {
   text-align: right;
@@ -230,6 +279,23 @@ body::after {
   display: flex;
   gap: 4px;
   justify-content: flex-end;
+}
+
+.price-bar {
+  position: relative;
+  height: 10px;
+  border-top: 1px solid rgba(255, 215, 0, 0.45);
+  margin-top: 6px;
+}
+
+.price-tick {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 8px;
+  transform: translateX(-1px);
+  background: var(--gold);
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
 }
 
 /* Navigation */
@@ -401,10 +467,21 @@ body::after {
 
 .stash-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 10px;
   padding: 6px 0;
   border-bottom: 1px solid rgba(0, 85, 0, 0.2);
+}
+
+.stash-drug {
+  flex: 1;
+}
+
+.stash-qty {
+  color: var(--white);
+  min-width: 24px;
+  text-align: right;
 }
 
 /* Game Over */

@@ -104,6 +104,19 @@ KW.getLocationData = function(key) {
   return null;
 };
 
+KW.getDrugData = function(name) {
+  for (var i = 0; i < KW.DRUGS.length; i++) {
+    if (KW.DRUGS[i].name === name) return KW.DRUGS[i];
+  }
+  return null;
+};
+
+KW.getDrugRealName = function(name) {
+  var drug = KW.getDrugData(name);
+  if (drug && drug.realName) return drug.realName;
+  return name;
+};
+
 KW.generatePrices = function() {
   var prices = {};
   var available = KW.DRUGS.slice();
