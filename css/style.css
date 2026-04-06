@@ -284,7 +284,7 @@ body::after {
 .price-bar {
   position: relative;
   height: 10px;
-  border-top: 1px solid rgba(255, 215, 0, 0.45);
+  border-top: 1px solid rgba(150, 150, 150, 0.45);
   margin-top: 6px;
 }
 
@@ -294,8 +294,8 @@ body::after {
   width: 2px;
   height: 8px;
   transform: translateX(-1px);
-  background: var(--gold);
-  box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+  background: #999;
+  box-shadow: 0 0 6px rgba(150, 150, 150, 0.6);
 }
 
 /* Navigation */
