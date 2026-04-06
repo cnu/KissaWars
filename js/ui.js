@@ -21,7 +21,13 @@ KW.renderStatusBar = function() {
   var loc = KW.getLocationData(p.location);
   var el = document.getElementById('status-bar');
   if (!el) return;
-  el.onclick = function() { KW.openStatsOverlay(); };
+  if (KW.state.gameMode === 'dealers_edge') {
+    el.onclick = function() { KW.openStatsOverlay(); };
+    el.style.cursor = 'pointer';
+  } else {
+    el.onclick = null;
+    el.style.cursor = '';
+  }
   el.innerHTML =
     '<div class="status-row">' +
       '<span class="status-loc">' + loc.name + '</span>' +
@@ -84,7 +90,7 @@ KW.renderMarket = function() {
     var qty = inv[name] || 0;
     html += '<tr data-drug="' + name + '">' +
       '<td class="drug-name-cell">' + KW.renderDrugName(name) + '</td>' +
-      '<td class="price"><span class="price-value">' + KW.formatMoney(price) + '</span>' + KW.renderPriceBar(name, price) + '</td>' +
+      '<td class="price"><span class="price-value">' + KW.formatMoney(price) + '</span>' + (KW.state.gameMode === 'dealers_edge' ? KW.renderPriceBar(name, price) : '') + '</td>' +
       '<td class="qty">' + qty + '</td>' +
       '<td class="actions">' +
         '<button class="btn-sm btn-buy" onclick="KW.openBuyModal(\'' + name + '\')">BUY</button>' +

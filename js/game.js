@@ -11,11 +11,37 @@ KW.init = function() {
   }, { once: true });
 
   // Title screen buttons
+  var modePicker = document.getElementById('mode-picker');
+  var titleButtons = document.querySelector('.title-buttons');
+
   document.getElementById('btn-new-game').onclick = function() {
     KW.sound.click();
-    KW.newGame();
+    titleButtons.style.display = 'none';
+    modePicker.style.display = '';
+  };
+
+  document.getElementById('btn-mode-classic').onclick = function() {
+    KW.sound.click();
+    modePicker.style.display = 'none';
+    titleButtons.style.display = '';
+    KW.newGame('classic');
     KW.showScreen('market');
     KW.renderMarket();
+  };
+
+  document.getElementById('btn-mode-edge').onclick = function() {
+    KW.sound.click();
+    modePicker.style.display = 'none';
+    titleButtons.style.display = '';
+    KW.newGame('dealers_edge');
+    KW.showScreen('market');
+    KW.renderMarket();
+  };
+
+  document.getElementById('btn-mode-cancel').onclick = function() {
+    KW.sound.click();
+    modePicker.style.display = 'none';
+    titleButtons.style.display = '';
   };
 
   var continueBtn = document.getElementById('btn-continue');

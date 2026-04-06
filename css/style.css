@@ -110,6 +110,53 @@ body::after {
   max-width: 280px;
 }
 
+/* Mode Picker */
+.mode-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mode-picker-title {
+  color: var(--green-dim);
+  font-size: 0.85rem;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.mode-btn {
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 16px;
+  text-align: left;
+  min-height: 60px;
+}
+
+.mode-name {
+  font-size: 1rem;
+  color: var(--green);
+  letter-spacing: 1px;
+}
+
+.mode-desc {
+  font-size: 0.75rem;
+  color: var(--green-dim);
+}
+
+.mode-cancel {
+  margin-top: 4px;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -686,9 +733,6 @@ body::after {
 }
 
 /* Stats Overlay */
-#status-bar {
-  cursor: pointer;
-}
 
 .stats-box {
   max-width: 400px;

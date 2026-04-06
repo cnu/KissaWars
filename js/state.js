@@ -8,9 +8,10 @@ KW.SETTINGS_KEY = 'kissawars_settings';
 
 KW.state = null;
 
-KW.newGame = function() {
+KW.newGame = function(gameMode) {
   KW.state = {
     version: KW.STATE_VERSION,
+    gameMode: gameMode || 'classic',
     player: {
       cash: KW.STARTING_CASH,
       debt: KW.STARTING_DEBT,
@@ -57,6 +58,7 @@ KW.loadGame = function() {
     if (!data) return false;
     KW.state = JSON.parse(data);
     // Migrate old saves
+    if (!KW.state.gameMode) KW.state.gameMode = 'classic';
     if (!KW.state.history) KW.state.history = [];
     var s = KW.state.stats;
     if (!s.drugProfits) s.drugProfits = {};
