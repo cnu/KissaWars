@@ -158,7 +158,8 @@ KW.travelTo = function(locationKey) {
   // Generate new prices
   KW.generatePrices();
 
-  // Track history and location visits
+  // Track history, observed prices, and location visits
+  KW.recordObservedPrices();
   KW.recordHistory();
   KW.state.stats.locationVisits[locationKey] = (KW.state.stats.locationVisits[locationKey] || 0) + 1;
 

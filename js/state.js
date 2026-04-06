@@ -38,8 +38,11 @@ KW.newGame = function(gameMode) {
       locationVisits: {},
     },
     history: [],
+    observedPrices: {},
+    lastSeenPrices: {},
   };
   KW.generatePrices();
+  KW.recordObservedPrices();
   KW.recordHistory();
   KW.saveGame();
 };
@@ -65,6 +68,8 @@ KW.loadGame = function() {
     if (!s.drugsBought) s.drugsBought = {};
     if (!s.drugsSold) s.drugsSold = {};
     if (!s.locationVisits) s.locationVisits = {};
+    if (!KW.state.observedPrices) KW.state.observedPrices = {};
+    if (!KW.state.lastSeenPrices) KW.state.lastSeenPrices = {};
     return true;
   } catch (e) {
     console.warn('Failed to load game:', e);
@@ -98,10 +103,12 @@ KW.getStashSize = function() {
 
 KW.getInventoryValue = function() {
   var total = 0;
+  var lastSeen = KW.state.lastSeenPrices || {};
   for (var drug in KW.state.inventory) {
     var qty = KW.state.inventory[drug];
-    if (qty > 0 && KW.state.currentPrices[drug]) {
-      total += qty * KW.state.currentPrices[drug];
+    if (qty > 0) {
+      var price = KW.state.currentPrices[drug] || lastSeen[drug] || 0;
+      total += qty * price;
     }
   }
   return total;
@@ -171,6 +178,22 @@ KW.saveSettings = function(settings) {
   try {
     localStorage.setItem(KW.SETTINGS_KEY, JSON.stringify(settings));
   } catch (e) {}
+};
+
+KW.recordObservedPrices = function() {
+  var prices = KW.state.currentPrices;
+  var observed = KW.state.observedPrices;
+  var lastSeen = KW.state.lastSeenPrices;
+  for (var name in prices) {
+    var p = prices[name];
+    lastSeen[name] = p;
+    if (!observed[name]) {
+      observed[name] = { min: p, max: p };
+    } else {
+      if (p < observed[name].min) observed[name].min = p;
+      if (p > observed[name].max) observed[name].max = p;
+    }
+  }
 };
 
 KW.recordHistory = function() {

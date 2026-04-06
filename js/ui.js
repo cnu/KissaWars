@@ -57,10 +57,10 @@ KW.renderDrugName = function(name) {
 };
 
 KW.renderPriceBar = function(name, price) {
-  var drug = KW.getDrugData(name);
-  if (!drug) return '<div class="price-bar"><div class="price-tick" style="left:50%"></div></div>';
-  var range = drug.max - drug.min;
-  var pct = range > 0 ? ((price - drug.min) / range) * 100 : 50;
+  var observed = KW.state.observedPrices && KW.state.observedPrices[name];
+  if (!observed) return '<div class="price-bar"><div class="price-tick" style="left:50%"></div></div>';
+  var range = observed.max - observed.min;
+  var pct = range > 0 ? ((price - observed.min) / range) * 100 : 50;
   pct = Math.max(0, Math.min(100, pct));
   return '<div class="price-bar"><div class="price-tick" style="left:' + pct + '%"></div></div>';
 };
