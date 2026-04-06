@@ -32,7 +32,7 @@ KW.EVENTS = {
     'The demand for {drug} has gone through the roof in the area!',
   ],
   priceCrashMessages: [
-    'The police just raided a {drug} den! Prices have crashed!',
+    'The Thadis just raided a {drug} den! Prices have crashed!',
     'A rival dealer is dumping cheap {drug} on the market!',
   ],
   findDrugMessages: [

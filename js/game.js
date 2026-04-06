@@ -56,6 +56,14 @@ KW.init = function() {
     };
   }
 
+  // Stats overlay close handlers
+  document.getElementById('stats-close-btn').onclick = function() {
+    KW.closeStatsOverlay();
+  };
+  document.getElementById('stats-modal').onclick = function(e) {
+    if (e.target === this) KW.closeStatsOverlay();
+  };
+
   KW.showScreen('title');
 };
 
@@ -75,6 +83,8 @@ KW.buyDrug = function(name, qty) {
   KW.state.player.cash -= cost;
   KW.state.inventory[name] = (KW.state.inventory[name] || 0) + qty;
   KW.state.stats.totalBought += cost;
+  KW.state.stats.drugsBought[name] = (KW.state.stats.drugsBought[name] || 0) + qty;
+  KW.state.stats.drugProfits[name] = (KW.state.stats.drugProfits[name] || 0) - cost;
   KW.sound.buy();
   KW.saveGame();
   KW.renderMarket();
@@ -93,6 +103,8 @@ KW.sellDrug = function(name, qty) {
   KW.state.inventory[name] -= qty;
   if (KW.state.inventory[name] <= 0) delete KW.state.inventory[name];
   KW.state.stats.totalSold += revenue;
+  KW.state.stats.drugsSold[name] = (KW.state.stats.drugsSold[name] || 0) + qty;
+  KW.state.stats.drugProfits[name] = (KW.state.stats.drugProfits[name] || 0) + revenue;
   KW.sound.sell();
   KW.saveGame();
   KW.renderMarket();
@@ -119,6 +131,10 @@ KW.travelTo = function(locationKey) {
 
   // Generate new prices
   KW.generatePrices();
+
+  // Track history and location visits
+  KW.recordHistory();
+  KW.state.stats.locationVisits[locationKey] = (KW.state.stats.locationVisits[locationKey] || 0) + 1;
 
   KW.sound.travel();
   KW.saveGame();

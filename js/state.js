@@ -31,9 +31,15 @@ KW.newGame = function() {
       arrests: 0,
       muggings: 0,
       fights: 0,
+      drugProfits: {},
+      drugsBought: {},
+      drugsSold: {},
+      locationVisits: {},
     },
+    history: [],
   };
   KW.generatePrices();
+  KW.recordHistory();
   KW.saveGame();
 };
 
@@ -50,6 +56,13 @@ KW.loadGame = function() {
     var data = localStorage.getItem(KW.SAVE_KEY);
     if (!data) return false;
     KW.state = JSON.parse(data);
+    // Migrate old saves
+    if (!KW.state.history) KW.state.history = [];
+    var s = KW.state.stats;
+    if (!s.drugProfits) s.drugProfits = {};
+    if (!s.drugsBought) s.drugsBought = {};
+    if (!s.drugsSold) s.drugsSold = {};
+    if (!s.locationVisits) s.locationVisits = {};
     return true;
   } catch (e) {
     console.warn('Failed to load game:', e);
@@ -156,4 +169,17 @@ KW.saveSettings = function(settings) {
   try {
     localStorage.setItem(KW.SETTINGS_KEY, JSON.stringify(settings));
   } catch (e) {}
+};
+
+KW.recordHistory = function() {
+  var p = KW.state.player;
+  KW.state.history.push({
+    day: p.day,
+    netWorth: KW.getNetWorth(),
+    cash: p.cash,
+    bank: p.bank,
+    debt: p.debt,
+    health: p.health,
+    location: p.location,
+  });
 };
